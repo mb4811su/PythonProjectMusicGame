@@ -45,10 +45,10 @@ quiz_data_by_song = [
         "song": "Here'sToYou.mp3",
         "questions": [
             ("What mood does this song create?", ["Sad", "Somber", "Retro", "Funky"], 1),
-            ("Who composed the song?", ["Lady Gaga", "Taylor swift", "Ennio Morricone, featuring Joan Baez", "Samuel Kim"], 2),
+            ("Who composed the song?", ["Lady Gaga", "Taylor Swift", "Ennio Morricone, featuring Joan Baez", "Samuel Kim"], 2),
             ("What media was this song played in?", ["Video game", "Movie", "Youtube", "Radio"], 3),
             ("What video game do you think the song was in?", ["Metal Gear Solid", "A new game", "GTA", "Halo"], 0),
-            ("Did you listen to most of the song?", ["No, Too boring, Yuck!", "Yes, Because I enjoy it, but actually I need the point"], 1)
+            ("Did you listen to most of the song?", ["No, Too boring, Yuck!", "Yes, It was a good song"], 1)
         ]
     },
     {
@@ -56,8 +56,56 @@ quiz_data_by_song = [
         "questions": [
             ("What language do you think it is?", ["English", "Korean", "Chinese", "Japanese"], 3),
             ("What media do you think it was featured in?", ["Movie", "Animated show", "Sitcom", "Concert"], 0),
-            ("Who do you think the artist??", ["TWICE", "Daichi Miura", "Lee Bul", "Bruce Lee" ], 1)
-            ("")
+            ("Who do you think the artist is?", ["TWICE", "Daichi Miura", "Lee Bul", "Bruce Lee"], 1),
+            ("Did you listen to most of the song?", ["No, too boring yuck!", "Yes"], 1),
+            ("What video game do you think the song was in?", ["Hitman", "Dragon Ball Super: Broly", "Arcane", "Devil May Cry"], 1)
+        ]
+    },
+    {
+        "song": "Lumière.mp3",
+        "questions": [
+            ("What language do you think it is?", ["English", "Latin", "Italian", "French"], 3),
+            ("What media do you think it was featured in?", ["Opera", "Musical", "Movie", "Video Game"], 3),
+            ("What game do you think it was in?", ["Smash Bros", "Tom Clancy, The Division", "Clair Obscur Expedition 33", "Uncharted"], 2),
+            ("Who do you think was the artist?", ["Lorien Testard", "Enrique Iglesias", "Uhhh, Idk", "Seriously no idea"], 0),
+            ("Did you listen to most of the song?", ["No, too boring yuck!", "Yes"], 1)
+        ]
+    },
+    {
+        "song": "TheLastOfUs.mp3",
+        "questions": [
+            ("What theme mood does the song give?", ["Somber", "Dramatic", "Powerful", "Anger"], 0),
+            ("What media do you think it was featured in?", ["Opera", "Musical", "Movie", "Video Game"], 3),
+            ("What game do you think it was in?", ["The Walking Dead", "The Last of Us", "Jax and Daxter", "Uncharted"], 1),
+            ("Who do you think was the composer?", ["Gustavo Santaolalla", "Jack Miller", "Ethan Willams", "Seriously no idea"], 0),
+            ("Did you listen to most of the song?", ["No, too boring yuck!", "Yes"], 1)
+        ]
+    },
+    {
+        "song": "ALittleFaster.mp3",
+        "questions": [
+            ("What theme mood does the song give?", ["Heroic", "Dramatic", "Powerful", "Anger"], 1),
+            ("What media do you think it was featured in?", ["Opera", "Musical", "Movie", "Video Game"], 2),
+            ("What game do you think it was in?", ["Ben 10", "The Last of Us", "Jax and Daxter", "Uncharted"], 1),
+            ("Who do you think was the composer?", ["There for Tomorrow", "Skillet", "Imagine Dragons", "Edward Jackson"], 0),
+            ("Did you listen to most of the song?", ["No, too boring yuck!", "Yes"], 1)
+        ]
+    },
+    {
+        "song": "Enemy.mp3",
+        "questions": [
+            ("What theme mood does the song give?", ["Heroic", "Dramatic", "Powerful", "Somber"], 1),
+            ("What media do you think it was featured in?", ["TV Show", "Musical", "Movie", "Video Game"], 0),
+            ("What show do you think the song was in?", ["Arcane", "The Last of Us", "Rick and Morty", "Family Guy"], 0),
+            ("Who do you think was the composer?", ["There for Tomorrow", "Skillet", "Imagine Dragons", "Edward Jackson"], 2),
+            ("Did you listen to most of the song?", ["No, too boring yuck!", "Yes"], 1)
+        ]
+    },
+    {
+        "song": "Never Gonna Give You Up.mp3",
+        "questions": [
+            ("Did I get ya?", ["You should know this one by now", "No, I do not know it", "C'mon man rick roll in 2025?"], 0),
+            ("Stay here for the rest of the song", ["Okay free point", "NOOOO LET ME OUT"], 0)
         ]
     }
 ]
@@ -79,7 +127,6 @@ def draw_question(index):
         option_surface = font.render(option, True, BLACK)
         screen.blit(option_surface, (60, 160 + i * 60))
 
-    # Show progress
     progress_text = font.render(f"Question {index + 1} of {len(current_round['questions'])}", True, BLACK)
     screen.blit(progress_text, (50, 10))
 
@@ -126,14 +173,12 @@ while running:
                     else:
                         feedback = "NOPE!"
 
-                    # Show feedback
                     screen.fill(WHITE)
                     feedback_surface = font.render(feedback, True, BLUE)
                     screen.blit(feedback_surface, (WIDTH // 2 - 100, HEIGHT // 2))
                     pygame.display.flip()
                     pygame.time.wait(1000)
 
-                    # Next question
                     current_q += 1
                     if current_q >= len(current_round["questions"]):
                         stop_music()
